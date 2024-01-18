@@ -24,8 +24,12 @@ const NavigationSidebar = async () => {
     },
   });
   return (
-    <div className="space-y-3 flex flex-col w-full h-full py-3 px-2">
-      <Button variant={"primary"} size="default" className="h-14 justify-start ">
+    <div className="space-y-3 flex flex-col w-full h-full py-3 px-2 bg-zinc-50">
+      <Button
+        variant={"primary"}
+        size="default"
+        className="h-14 justify-start "
+      >
         <UserButton
           afterSignOutUrl="/"
           appearance={{

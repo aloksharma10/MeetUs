@@ -29,7 +29,8 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            <ModelProvider/>{children}
+            <ModelProvider/>
+            {children}
           </ThemeProvider>
         </ClerkProvider>
       </body>

@@ -10,7 +10,7 @@ export default function MainLayout({
       <div className="hidden md:flex h-full z-30 flex-col fixed inset-y-0 border-r w-[290px]">
         <NavigationSidebar />
       </div>
-      <main className="md:pl-[72px] h-full">{children}</main>
+      <main className="h-full md:pl-[290px]">{children}</main>
     </div>
   );
 }
