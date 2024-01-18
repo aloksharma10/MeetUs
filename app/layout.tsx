@@ -4,6 +4,7 @@ import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { cn } from "@/lib/utils";
+import { ModelProvider } from "@/components/providers/ModelProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,15 +20,16 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={cn(inter.className, "bg-white dark:bg-[#313338]")}>
+      <body className={cn(inter.className)}>
         <ClerkProvider>
           <ThemeProvider
             attribute="class"
+            forcedTheme="light"
             defaultTheme="system"
             enableSystem
             disableTransitionOnChange
           >
-            {children}
+            <ModelProvider/>{children}
           </ThemeProvider>
         </ClerkProvider>
       </body>

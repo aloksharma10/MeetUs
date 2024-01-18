@@ -1,6 +1,5 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import {
   Dialog,
   DialogContent,
@@ -27,22 +26,18 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { createServer } from "@/actions/server";
 import { useRouter } from "next/navigation";
+import { useModal } from "@/hooks/use-model-store";
 
 const formSchema = zod.object({
   name: zod.string().min(1, { message: "Server name is required" }),
   imgURL: zod.string().min(1, { message: "Image is required" }),
 });
 
-const InitialModel = () => {
-  const [isMounted, setIsMounted] = useState(false);
-  
+const CreateServerModal = () => {
   const router = useRouter();
+  
+  const { isOpen, onClose, type }= useModal()
 
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-  
-  
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -57,15 +52,20 @@ const InitialModel = () => {
       await createServer(values);
       form.reset();
       router.refresh();
+      onClose();
     } catch (error) {
       console.log(error);
     }
   };
 
-  if (!isMounted) return null;
+const isModelOpen = type === "createServer" && isOpen;
 
+const handleClose = () => {
+  form.reset();
+  onClose();
+}
   return (
-    <Dialog open>
+    <Dialog open={isModelOpen} onOpenChange={handleClose}>
       <DialogContent className="dark:bg-white text-black p-0 overflow-hidden">
         <DialogHeader className="pt-8 px-6">
           <DialogTitle className="text-2xl text-center font-bold">
@@ -130,4 +130,4 @@ const InitialModel = () => {
   );
 };
 
-export default InitialModel;
+export default CreateServerModal;

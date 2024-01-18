@@ -6,13 +6,15 @@ import NavigationAction from "@/components/navigation/navigation-action";
 import { Separator } from "@/components/ui/separator";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import NavigationItem from "@/components/navigation/navigation-item";
+import { UserButton } from "@clerk/nextjs";
+import { Button } from "@/components/ui/button";
 
 const NavigationSidebar = async () => {
   const profile = await currentProfile();
 
   if (!profile) return redirect("/");
 
-  const servers =await db.server.findMany({
+  const servers = await db.server.findMany({
     where: {
       members: {
         some: {
@@ -22,13 +24,32 @@ const NavigationSidebar = async () => {
     },
   });
   return (
-    <div className="space-y-4 flex flex-col items-center w-full h-full dark:bg-[#1E1F22] py-3">
+    <div className="space-y-3 flex flex-col w-full h-full py-3 px-2">
+      <Button variant={"primary"} size="default" className="h-14 justify-start ">
+        <UserButton
+          afterSignOutUrl="/"
+          appearance={{
+            elements: {
+              avatarBox: "h-[36px] w-[36px]",
+            },
+          }}
+        />
+        <div className="flex flex-col mx-3">
+          <span className="font-semibold tracking-tight">{profile.name}</span>
+          <span className="text-emerald-400 text-start">Online</span>
+        </div>
+      </Button>
+
       <NavigationAction />
-      <Separator className="h-[2px] bg-zinc-300 dark:bg-zinc-700 rounded-md w-10 mx-auto" />
-      <ScrollArea className="flex-1 w-full">
+      <Separator className="h-[2px] bg-zinc-300 dark:bg-zinc-700 rounded-md w-20 mx-auto" />
+      <ScrollArea className="w-full flex-1 gap-1 ">
         {servers.map((server) => (
-          <div key={server.id} className="mb-4">
-            <NavigationItem id={server.id} name={server.name} imgURL={server.imgURL}/>
+          <div key={server.id} className="mb-1">
+            <NavigationItem
+              id={server.id}
+              name={server.name}
+              imgURL={server.imgURL}
+            />
           </div>
         ))}
       </ScrollArea>
