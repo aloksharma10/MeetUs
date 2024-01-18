@@ -3,6 +3,7 @@ import InitialUser from "@/lib/initial-user";
 import { UserButton } from "@clerk/nextjs";
 import { db } from "@/lib/db";
 import { redirect } from "next/navigation";
+import InitialModel from "@/components/model/iniital-model";
 
 export default async function HomePage() {
   const profile = await InitialUser();
@@ -22,9 +23,6 @@ export default async function HomePage() {
   }
   
   return (
-    <div>
-      <UserButton afterSignOutUrl="/"/>
-      <ModeToggle/>
-    </div>
+    <InitialModel/>
   );
 }
