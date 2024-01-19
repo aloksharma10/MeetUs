@@ -1,5 +1,8 @@
 "use client";
 
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+
 import {
   Dialog,
   DialogContent,
@@ -12,7 +15,6 @@ import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -24,10 +26,9 @@ import { FileUpload } from "@/components/file-upload";
 import * as zod from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { createServer } from "@/actions/server";
-import { useRouter } from "next/navigation";
+
 import { useModal } from "@/hooks/use-model-store";
-import { useEffect } from "react";
+import { updateServerInfo } from "@/actions/server";
 
 const formSchema = zod.object({
   name: zod.string().min(1, { message: "Server name is required" }),
@@ -61,7 +62,7 @@ const EditServerModal = () => {
 
   const onSubmit = async (values: zod.infer<typeof formSchema>) => {
     try {
-    //   await createServer(values);
+    await updateServerInfo(server?.id ?? "", values);
       form.reset();
       router.refresh();
       onClose();
@@ -72,7 +73,6 @@ const EditServerModal = () => {
 
 
   const handleClose = () => {
-    form.reset();
     onClose();
   };
   return (

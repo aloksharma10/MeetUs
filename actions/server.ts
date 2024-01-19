@@ -67,3 +67,24 @@ export async function upadateServerInviteCode(serverId: string) {
         return null;
     }
 }
+
+export async function updateServerInfo(serverId: string, formData: FormData) {
+    try {
+        const profile = await currentProfile();
+        if (!profile) throw new Error("Unauthorized");
+
+        const server = await db.server.update({
+            where: {
+                id: serverId,
+                profileId: profile.id
+            },
+            data: {
+                ...formData
+            }
+        })
+        return server;
+    } catch (error) {
+        console.log("[ERROR] updateServerInfo", error)
+        return null;
+    }
+}
