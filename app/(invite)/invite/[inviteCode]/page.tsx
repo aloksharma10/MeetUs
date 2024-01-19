@@ -3,6 +3,8 @@ import { redirectToSignIn } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 import { db } from "@/lib/db";
 
+// Page throw an error if newly created user directly come with invite link!
+// 14. Line: @ if (!profile) return redirectToSignIn();
 export default async function InviteCodePage({
   params,
 }: {

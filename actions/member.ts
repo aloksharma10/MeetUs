@@ -3,7 +3,6 @@
 import { currentProfile } from "@/lib/current-profile";
 import { db } from "@/lib/db";
 import { MemberType } from "@prisma/client";
-import { revalidatePath } from "next/cache";
 
 export async function handleMemberType(memberId: string, serverId: string, type: MemberType) {
     try {
@@ -104,10 +103,10 @@ export async function deleteMember(memberId: string, serverId: string) {
                 }
             }
         });
-        revalidatePath('/', "layout")
         return server;
     } catch (error) {
         console.log("[ERROR] handleMemberType", error)
         return { error: "Internal server error", status: 500 };
     }
 }
+

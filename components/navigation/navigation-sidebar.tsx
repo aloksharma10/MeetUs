@@ -24,7 +24,7 @@ const NavigationSidebar = async () => {
     },
   });
   return (
-    <div className="space-y-3 flex flex-col w-full h-full py-3 px-2 bg-zinc-50">
+    <div className="space-y-3 flex flex-col w-full h-full py-3 px-2 bg-zinc-50 border-r">
       <Button
         variant={"primary"}
         size="default"
