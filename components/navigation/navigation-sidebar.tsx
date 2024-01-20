@@ -8,6 +8,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import NavigationItem from "@/components/navigation/navigation-item";
 import { UserButton } from "@clerk/nextjs";
 import { Button } from "@/components/ui/button";
+import SocketIndicator from "../socket-indicator";
 
 const NavigationSidebar = async () => {
   const profile = await currentProfile();
@@ -40,7 +41,7 @@ const NavigationSidebar = async () => {
         />
         <div className="flex flex-col mx-3">
           <span className="font-semibold tracking-tight">{profile.name}</span>
-          <span className="text-emerald-400 text-start">Online</span>
+         <SocketIndicator/>
         </div>
       </Button>
 
