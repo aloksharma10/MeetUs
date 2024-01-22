@@ -11,6 +11,7 @@ import { useRouter } from "next/navigation";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useModal } from "@/hooks/use-model-store";
+import EmojiPicker from "../emoji-picker";
 // import { EmojiPicker } from "@/components/emoji-picker";
 
 interface ChatInputProps {
@@ -46,8 +47,6 @@ export const ChatInput = ({ apiUrl, query, name, type }: ChatInputProps) => {
         body: JSON.stringify(values),
       });
 
-      // await axios.post(url, values);
-
       form.reset();
       router.refresh();
     } catch (error) {
@@ -82,7 +81,7 @@ export const ChatInput = ({ apiUrl, query, name, type }: ChatInputProps) => {
                   />
                   <div className="absolute top-7 right-8">
                     <EmojiPicker
-                      onChange={(emoji: string)=>field.onChange(`${emoji}`)}
+                      onChange={(emoji: string)=>field.onChange(`${field.value}${emoji}`)}
                     />
                   </div>
                 </div>
