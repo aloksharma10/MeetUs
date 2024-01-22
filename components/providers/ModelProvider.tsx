@@ -10,7 +10,8 @@ import CreateChannelModal from "@/components/model/create-channel-modal";
 import LeaveServerModal from "@/components/model/leave-server-modal";
 import DeleteServerModal from "@/components/model/delete-server-modal";
 import DeleteChannelModal from "@/components/model/delete-channel-modal";
-import EditChannelModal from "../model/edit-channel-modal";
+import EditChannelModal from "@/components/model/edit-channel-modal";
+import MessageFileModal from "@/components/model/message-file-modal";
 
 export const ModelProvider = () => {
   const [isMounted, setIsMounted] = useState(false);
@@ -32,6 +33,7 @@ export const ModelProvider = () => {
       <DeleteServerModal />
       <DeleteChannelModal />
       <EditChannelModal />
+      <MessageFileModal/>
     </>
   );
 };

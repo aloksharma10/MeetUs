@@ -1,19 +1,20 @@
 import { NextApiRequest } from "next";
 import { NextAPIResponseServerInfo } from "@/types";
 
-import { currentProfileProfile } from "@/lib/current-profile-pages";
+import { currentProfilePages } from "@/lib/current-profile-pages";
 import { db } from "@/lib/db";
 
 export default async function handler(req: NextApiRequest, res: NextAPIResponseServerInfo) {
     if (req.method !== "POST") return res.status(405).json({ message: "Method not allowed" })
 
     try {
-        const profile = await currentProfileProfile(req)
+        const profile = await currentProfilePages(req)
         if (!profile) return res.status(401).json({ message: "Unauthorized" })
 
-        const { content, fileURL } = JSON.parse(req.body)
+        const { content, imgURL: fileURL } = JSON.parse(req.body)
         const { serverId, channelId } = req.query
 
+        console.log(req.body)
         if (!content) return res.status(400).json({ message: "Missing content" })
         if (!serverId || !channelId) return res.status(400).json({ message: "Missing serverId or channelId" })
 
