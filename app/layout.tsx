@@ -6,6 +6,7 @@ import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { cn } from "@/lib/utils";
 import { ModelProvider } from "@/components/providers/ModelProvider";
 import { SocketProvider } from "@/components/providers/socket-provider";
+import { QueryProvider } from "@/components/providers/query-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -30,10 +31,12 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            <SocketProvider>
-            <ModelProvider/>
-            {children}
-            </SocketProvider>
+            <QueryProvider>
+              <SocketProvider>
+                <ModelProvider />
+                {children}
+              </SocketProvider>
+            </QueryProvider>
           </ThemeProvider>
         </ClerkProvider>
       </body>
