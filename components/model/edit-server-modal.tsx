@@ -98,7 +98,7 @@ const EditServerModal = () => {
                     <FormItem>
                       <FormControl>
                         <FileUpload
-                          endpoint="serverImage"
+                          endpoint="serverImages"
                           value={field.value}
                           onChange={field.onChange}
                         />
