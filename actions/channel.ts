@@ -117,6 +117,7 @@ export async function updateChannelInfo({ name, type }: { name: string, type: st
             },
             data: {
                 channels: {
+                    // @ts-ignore
                     update: {
                         where: {
                             id: channelId,

@@ -61,6 +61,7 @@ export const ChatMessages = ({
     bottomRef,
     loadMore: fetchNextPage,
     shouldLoadMore: !isFetchingNextPage && !!hasNextPage,
+    // @ts-ignore
     count: data?.pages?.[0]?.items?.length ?? 0,
   });
 
@@ -107,7 +108,8 @@ export const ChatMessages = ({
       <div className="flex flex-col-reverse mt-auto">
         {data?.pages?.map((group, i) => (
           <Fragment key={i}>
-            {group.items.map(
+            {/* @ts-ignore */}
+            {group?.items.map(
               (message: MessageWithMemberWithProfile, i: number) => (
                 <ChatItem
                   key={i}
