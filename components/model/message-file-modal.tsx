@@ -32,7 +32,7 @@ const formSchema = zod.object({
 
 const MessageFileModal = () => {
   const { type, data, onClose, isOpen } = useModal();
-  const { apiUrl, query } = data;
+  const { query } = data;
 
   const router = useRouter();
 

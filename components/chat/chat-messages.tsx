@@ -22,7 +22,6 @@ interface ChatMessagesProps {
   name: string;
   member: Member;
   chatId: string;
-  apiUrl: string;
   socketUrl: string;
   socketQuery: Record<string, string>;
   paramKey: "channelId" | "conversationId";
@@ -36,7 +35,6 @@ export const ChatMessages = ({
   name,
   member,
   chatId,
-  apiUrl,
   socketUrl,
   socketQuery,
   paramKey,
@@ -53,7 +51,6 @@ export const ChatMessages = ({
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, status } =
     useChatQuery({
       queryKey,
-      apiUrl,
       paramKey,
       paramValue,
     });

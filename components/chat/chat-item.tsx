@@ -1,5 +1,8 @@
 "use client";
 
+import { useEffect, useState } from "react";
+import { useParams, useRouter } from "next/navigation";
+import axios from "axios";
 import * as z from "zod";
 import qs from "query-string";
 import { useForm } from "react-hook-form";
@@ -7,7 +10,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Member, MemberType, Profile } from "@prisma/client";
 import { Edit, FileIcon, ShieldAlert, ShieldCheck, Trash } from "lucide-react";
 import Image from "next/image";
-import { useEffect, useState } from "react";
 
 import { UserAvatar } from "@/components/user-avatar";
 import ActionTooltip from "@/components/action-tooltip";
@@ -16,7 +18,6 @@ import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useModal } from "@/hooks/use-model-store";
-import { useParams, useRouter } from "next/navigation";
 
 interface ChatItemProps {
   id: string;
@@ -98,10 +99,7 @@ export const ChatItem = ({
         query: socketQuery,
       });
 
-      await fetch(url, {
-        method: "PATCH",
-        body: JSON.stringify(values),
-      });
+      await axios.patch(url, values);
 
       form.reset();
       setIsEditing(false);
