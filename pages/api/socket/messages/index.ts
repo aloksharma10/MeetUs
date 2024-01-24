@@ -11,7 +11,7 @@ export default async function handler(req: NextApiRequest, res: NextAPIResponseS
         const profile = await currentProfilePages(req)
         if (!profile) return res.status(401).json({ message: "Unauthorized" })
 
-        const { content, imgURL: fileURL } = JSON.parse(req.body)
+        const { content, imgURL: fileURL } = req.body
         const { serverId, channelId } = req.query
 
         console.log(req.body)
