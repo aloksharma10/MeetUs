@@ -1,8 +1,6 @@
 "use client";
 
 import * as z from "zod";
-// import axios from "axios";
-// import qs from "query-string";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Plus, Smile } from "lucide-react";
@@ -12,7 +10,8 @@ import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useModal } from "@/hooks/use-model-store";
 import EmojiPicker from "../emoji-picker";
-// import { EmojiPicker } from "@/components/emoji-picker";
+import axios from "axios";
+import qs from "query-string";
 
 interface ChatInputProps {
   apiUrl: string;
@@ -40,13 +39,12 @@ export const ChatInput = ({ apiUrl, query, name, type }: ChatInputProps) => {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      const url = `${apiUrl}?channelId=${query.channelId}&serverId=${query.serverId}`;
-
-      await fetch(url, {
-        method: "POST",
-        body: JSON.stringify(values),
+      const url = qs.stringifyUrl({
+        url: apiUrl,
+        query,
       });
 
+      await axios.post(url, values);
       form.reset();
       router.refresh();
     } catch (error) {

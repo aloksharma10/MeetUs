@@ -2,7 +2,7 @@ import qs from "query-string";
 import { useInfiniteQuery } from "@tanstack/react-query";
 
 import { useSocket } from "@/components/providers/socket-provider";
-import { getMessages } from "@/actions/messages";
+import { directMessage, getMessages } from "@/actions/messages";
 
 interface ChatQueryProps {
     queryKey: string;
@@ -19,7 +19,15 @@ export const useChatQuery = ({
 
     const fetchMessages = async ({ pageParam = undefined }) => {
 
-        const res = await getMessages({ cursor: pageParam, paramKey, paramValue });
+        let res;
+
+        if (paramKey === "channelId") {
+            res = await getMessages({ cursor: pageParam, paramKey, paramValue });
+        }
+        else if (paramKey === "conversationId") {
+            res = await directMessage({ cursor: pageParam, paramKey, paramValue })
+        }
+
         console.log("res", res)
         return res
     };
