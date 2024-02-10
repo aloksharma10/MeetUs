@@ -22,7 +22,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={cn(inter.className)}>
+      <body className={cn(inter.className, "antialiased hover:subpixel-antialiased")}>
         <ClerkProvider>
           <ThemeProvider
             attribute="class"

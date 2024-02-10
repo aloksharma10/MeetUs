@@ -1,23 +1,24 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { LiveKitRoom, VideoConference } from "@livekit/components-react";
+import {
+  LiveKitRoom,
+  VideoConference,
+  useChat,
+} from "@livekit/components-react";
 import "@livekit/components-styles";
 
 import { useUser } from "@clerk/nextjs";
 import { Loader2 } from "lucide-react";
+import { Button } from "./ui/button";
 
 interface MediaRoomProps {
   chatId: string;
   video: boolean;
   audio: boolean;
-};
+}
 
-export const MediaRoom = ({
-  chatId,
-  video,
-  audio
-}: MediaRoomProps) => {
+export const MediaRoom = ({ chatId, video, audio }: MediaRoomProps) => {
   const { user } = useUser();
   const [token, setToken] = useState("");
 
@@ -28,26 +29,24 @@ export const MediaRoom = ({
 
     (async () => {
       try {
-        const resp = await fetch(`/api/livekit?room=${chatId}&username=${name}`);
+        const resp = await fetch(
+          `/api/livekit?room=${chatId}&username=${name}`
+        );
         const data = await resp.json();
         setToken(data.token);
       } catch (e) {
         console.log(e);
       }
-    })()
+    })();
   }, [user?.firstName, user?.lastName, chatId]);
 
   if (token === "") {
     return (
       <div className="flex flex-col flex-1 justify-center items-center">
-        <Loader2
-          className="h-7 w-7 text-zinc-500 animate-spin my-4"
-        />
-        <p className="text-xs text-zinc-500 dark:text-zinc-400">
-          Loading...
-        </p>
+        <Loader2 className="h-7 w-7 text-zinc-500 animate-spin my-4" />
+        <p className="text-xs text-zinc-500 dark:text-zinc-400">Loading...</p>
       </div>
-    )
+    );
   }
 
   return (
@@ -60,6 +59,16 @@ export const MediaRoom = ({
       audio={audio}
     >
       <VideoConference />
+      <SendMessage/>
     </LiveKitRoom>
-  )
-}
+  );
+};
+
+export const SendMessage = () => {
+  const { send } = useChat();
+  return (
+    <div className="absolute">
+      <Button onClick={async () => send && await send("hello")}>send</Button>
+    </div>
+  );
+};
