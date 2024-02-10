@@ -73,7 +73,7 @@ export const SendMessage = () => {
   const onClick = async () => {
     console.log("clicked");
     if (send && !isSending)
-      await send(`http://localhost:3000/board/${uuidv4()}`);
+      await send(`${process.env.NEXT_PUBLIC_URL!}/board/${uuidv4()}`);
   };
   return (
     <ActionTooltip side="left" align="center" label="Collaborate workspace">
