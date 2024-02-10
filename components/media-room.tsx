@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 import {
   LiveKitRoom,
   VideoConference,
@@ -9,8 +10,9 @@ import {
 import "@livekit/components-styles";
 
 import { useUser } from "@clerk/nextjs";
-import { Loader2 } from "lucide-react";
-import { Button } from "./ui/button";
+import { Loader, Loader2, Pen } from "lucide-react";
+
+import ActionTooltip from "./action-tooltip";
 
 interface MediaRoomProps {
   chatId: string;
@@ -59,16 +61,28 @@ export const MediaRoom = ({ chatId, video, audio }: MediaRoomProps) => {
       audio={audio}
     >
       <VideoConference />
-      <SendMessage/>
+      <SendMessage />
     </LiveKitRoom>
   );
 };
 
 export const SendMessage = () => {
-  const { send } = useChat();
+  const { send, isSending } = useChat();
+
+  const onClick = async () => {
+    console.log("clicked");
+    if (send && !isSending)
+      await send(`http://localhost:3000/board/${uuidv4()}`);
+  };
   return (
-    <div className="absolute">
-      <Button onClick={async () => send && await send("hello")}>send</Button>
-    </div>
+    <ActionTooltip side="left" align="center" label="Collaborate workspace">
+      <div className="absolute top-3 right-3 bg-yellow-500 p-3 rounded-md ">
+        {isSending ? (
+          <Loader size={18} />
+        ) : (
+          <Pen size={18} aria-disabled={isSending} onClick={onClick} />
+        )}
+      </div>
+    </ActionTooltip>
   );
 };

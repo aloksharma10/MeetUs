@@ -6,7 +6,7 @@ export default function MainLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="h-full">
+    <div className="h-full overflow-hidden">
       <div className="hidden md:flex h-full z-30 flex-col fixed inset-y-0 w-[290px]">
         <NavigationSidebar />
       </div>
