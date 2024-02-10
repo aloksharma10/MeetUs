@@ -1,5 +1,5 @@
 "use client";
-import { ServerWithMemberWithProfile } from "@/types";
+import { ServerWithMemberWithProfile } from "@/types/types";
 import { MemberType } from "@prisma/client";
 
 import {

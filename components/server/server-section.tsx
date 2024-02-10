@@ -3,7 +3,7 @@
 import { ChannelType, MemberType } from "@prisma/client";
 import { Plus, Settings } from "lucide-react";
 
-import { ServerWithMemberWithProfile } from "@/types";
+import { ServerWithMemberWithProfile } from "@/types/types";
 import ActionTooltip from "@/components/action-tooltip";
 import { useModal } from "@/hooks/use-model-store";
 

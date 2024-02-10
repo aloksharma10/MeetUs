@@ -36,7 +36,7 @@ import {
   DropdownMenuSubTrigger,
 } from "@/components/ui/dropdown-menu";
 
-import { ServerWithMemberWithProfile } from "@/types";
+import { ServerWithMemberWithProfile } from "@/types/types";
 import { MemberType } from "@prisma/client";
 
 import { deleteMember, handleMemberType } from "@/actions/member";

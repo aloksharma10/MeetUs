@@ -2,7 +2,7 @@ import { NextApiRequest } from 'next';
 import { Server as NetServer } from 'http';
 import { Server as SocketIOServer } from 'socket.io';
 
-import { NextAPIResponseServerInfo } from '@/types';
+import { NextAPIResponseServerInfo } from '@/types/types';
 
 export const config = {
     api: { bodyParser: false }
