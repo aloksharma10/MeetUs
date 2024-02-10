@@ -45,9 +45,9 @@ export default function ServerChannel({
     <button
       onClick={onClick}
       className={cn(
-        "group p-3 rounded-md flex items-center gap-x-2 w-full hover:bg-zinc-700/10 dark:hover:bg-zinc-700/50 transition mb-1",
+        "group p-3 rounded-md flex items-center gap-x-2 w-full hover:bg-zinc-700/10 dark: dark:hover:bg-zinc-700/50 transition mb-1",
         params?.channelId === channel.id &&
-          "bg-black hover:bg-zinc-700"
+          "bg-black hover:bg-zinc-700 dark:bg-zinc-700"
       )}
     >
       <Icon className="flex-shrink-0 w-5 h-5 text-zinc-400" />

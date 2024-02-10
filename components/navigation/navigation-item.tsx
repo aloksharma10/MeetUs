@@ -23,7 +23,7 @@ const NavigationItem = ({ id, name, imgURL }: NavigationItemProps) => {
         "w-full hover:bg-white/45",
         buttonVariants({ variant: linkVariant, size: "default" }),
         linkVariant === "default" &&
-          "dark:bg-muted dark:text-white dark:hover:bg-muted dark:hover:text-white",
+          "dark:bg-muted dark:text-white dark:hover:bg-muted dark:hover:text-white dark:bg-zinc-700",
         "justify-start"
       )}
     >

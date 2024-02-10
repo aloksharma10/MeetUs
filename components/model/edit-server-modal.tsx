@@ -62,7 +62,7 @@ const EditServerModal = () => {
 
   const onSubmit = async (values: zod.infer<typeof formSchema>) => {
     try {
-    await updateServerInfo(server?.id ?? "", values);
+      await updateServerInfo(server?.id ?? "", values);
       form.reset();
       router.refresh();
       onClose();
@@ -71,13 +71,12 @@ const EditServerModal = () => {
     }
   };
 
-
   const handleClose = () => {
     onClose();
   };
   return (
     <Dialog open={isModelOpen} onOpenChange={handleClose}>
-      <DialogContent className="dark:bg-white text-black p-0 overflow-hidden">
+      <DialogContent className="dark:text-white text-black p-0 overflow-hidden">
         <DialogHeader className="pt-8 px-6">
           <DialogTitle className="text-2xl text-center font-bold">
             Customize your server
@@ -95,7 +94,7 @@ const EditServerModal = () => {
                   control={form.control}
                   name="imgURL"
                   render={({ field }) => (
-                    <FormItem>
+                    <FormItem className="dark:bg-zinc-700 rounded-md">
                       <FormControl>
                         <FileUpload
                           endpoint="serverImages"
@@ -119,7 +118,7 @@ const EditServerModal = () => {
                     <FormControl>
                       <Input
                         disabled={isLoading}
-                        className="bg-zinc-300/50 border-0 focus-visible:ring-0 text-black focus-visible:ring-offset-0"
+                        className="bg-zinc-300/50 dark:bg-zinc-700 dark:text-white border-0 focus-visible:ring-0 text-black focus-visible:ring-offset-0"
                         placeholder="Enter server name"
                         {...field}
                       />
@@ -129,7 +128,7 @@ const EditServerModal = () => {
                 )}
               />
             </div>
-            <DialogFooter className="bg-gray-100 px-6 py-4">
+            <DialogFooter className="px-6 py-4">
               <Button
                 variant="primary"
                 className="bg-black"

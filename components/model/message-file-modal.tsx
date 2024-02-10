@@ -71,7 +71,7 @@ const MessageFileModal = () => {
 
   return (
     <Dialog open={isModelOpen} onOpenChange={handleClose}>
-      <DialogContent className="dark:bg-white text-black p-0 overflow-hidden">
+      <DialogContent className="dark:text-white text-black p-0 overflow-hidden">
         <DialogHeader className="pt-8 px-6">
           <DialogTitle className="text-2xl text-center font-bold">
             Add an attachment
@@ -102,7 +102,7 @@ const MessageFileModal = () => {
               </div>
             </div>
             <FormMessage />
-            <DialogFooter className="bg-gray-100 px-6 py-4">
+            <DialogFooter className="px-6 py-4">
               <Button variant="primary" disabled={isLoading}>
                 Save
               </Button>

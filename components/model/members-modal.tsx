@@ -86,7 +86,7 @@ export default function MembersModal() {
 
   return (
     <Dialog open={isModalOpen} onOpenChange={onClose}>
-      <DialogContent className="bg-white text-black overflow-hidden">
+      <DialogContent className="bg-white dark:text-white text-black overflow-hidden">
         <DialogHeader className="pt-8 px-6">
           <DialogTitle className="text-2xl text-center font-bold">
             Manage Members

@@ -66,7 +66,7 @@ const handleClose = () => {
 }
   return (
     <Dialog open={isModelOpen} onOpenChange={handleClose}>
-      <DialogContent className="dark:bg-white text-black p-0 overflow-hidden">
+      <DialogContent className="text-black dark:text-white p-0 overflow-hidden">
         <DialogHeader className="pt-8 px-6">
           <DialogTitle className="text-2xl text-center font-bold">
             Customize your server
@@ -108,7 +108,7 @@ const handleClose = () => {
                     <FormControl>
                     <Input
                         disabled={isLoading}
-                        className="bg-zinc-300/50 border-0 focus-visible:ring-0 text-black focus-visible:ring-offset-0"
+                        className="bg-zinc-300/50 dark:bg-zinc-700 dark:text-white border-0 focus-visible:ring-0 text-black focus-visible:ring-offset-0"
                         placeholder="Enter server name"
                         {...field}
                       />
@@ -118,7 +118,7 @@ const handleClose = () => {
                 )}
               />
             </div>
-            <DialogFooter className="bg-gray-100 px-6 py-4">
+            <DialogFooter className="px-6 py-4">
               <Button variant="primary" disabled={isLoading}>
                 Create
               </Button>

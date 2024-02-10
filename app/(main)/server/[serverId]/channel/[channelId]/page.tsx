@@ -41,7 +41,7 @@ export default async function ChannelIdPage({ params }: ChannelIdPageProps) {
   }
 
   return (
-    <div className="bg-zinc-50 flex flex-col h-full">
+    <div className="bg-zinc-50 dark:bg-black flex flex-col h-full">
       <ChatHeader
         name={channel.name}
         serverId={channel.serverId}

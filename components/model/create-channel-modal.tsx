@@ -92,7 +92,7 @@ export default function CreateChannelModal()  {
 
   return (
     <Dialog open={isModalOpen} onOpenChange={handleClose}>
-      <DialogContent className="bg-white text-black p-0 overflow-hidden">
+      <DialogContent className="bg-white dark:text-white text-black p-0 overflow-hidden">
         <DialogHeader className="pt-8 px-6">
           <DialogTitle className="text-2xl text-center font-bold">
             Create Channel
@@ -114,7 +114,7 @@ export default function CreateChannelModal()  {
                     <FormControl>
                       <Input
                         disabled={isLoading}
-                        className="bg-zinc-300/50 border-0 focus-visible:ring-0 text-black focus-visible:ring-offset-0"
+                        className="bg-zinc-300/50 border-0 dark:bg-zinc-700 dark:text-white focus-visible:ring-0 text-black focus-visible:ring-offset-0"
                         placeholder="Enter channel name"
                         {...field}
                       />
@@ -136,7 +136,7 @@ export default function CreateChannelModal()  {
                     >
                       <FormControl>
                         <SelectTrigger
-                          className="bg-zinc-300/50 border-0 focus:ring-0 text-black ring-offset-0 focus:ring-offset-0 capitalize outline-none"
+                          className="bg-zinc-300/50 dark:bg-zinc-700 dark:text-white border-0 focus:ring-0 text-black ring-offset-0 focus:ring-offset-0 capitalize outline-none"
                         >
                           <SelectValue placeholder="Select a channel type" />
                         </SelectTrigger>
@@ -158,7 +158,7 @@ export default function CreateChannelModal()  {
                 )}
               />
             </div>
-            <DialogFooter className="bg-gray-100 px-6 py-4">
+            <DialogFooter className="px-6 py-4">
               <Button variant="primary" disabled={isLoading}>
                 Create
               </Button>
