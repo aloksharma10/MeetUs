@@ -66,7 +66,7 @@ const InitialModel = () => {
 
   return (
     <Dialog open>
-      <DialogContent className=" text-black p-0 overflow-hidden">
+      <DialogContent className="dark:text-white text-black p-0 overflow-hidden">
         <DialogHeader className="pt-8 px-6">
           <DialogTitle className="text-2xl text-center font-bold">
             Customize your workspace
@@ -84,8 +84,8 @@ const InitialModel = () => {
                   control={form.control}
                   name="imgURL"
                   render={({ field }) => (
-                    <FormItem>
-                      <FormControl>
+                    <FormItem className="dark:bg-zinc-800 rounded-md">
+                      <FormControl className="">
                         <FileUpload
                           endpoint="serverImages"
                           value={field.value}
@@ -108,7 +108,7 @@ const InitialModel = () => {
                     <FormControl>
                     <Input
                         disabled={isLoading}
-                        className="bg-zinc-300/50 border-0 focus-visible:ring-0 text-black focus-visible:ring-offset-0"
+                        className="bg-zinc-300/50 dark:bg-zinc-700 dark:text-white border-0 focus-visible:ring-0 text-black focus-visible:ring-offset-0"
                         placeholder="Enter server name"
                         {...field}
                       />
@@ -118,8 +118,8 @@ const InitialModel = () => {
                 )}
               />
             </div>
-            <DialogFooter className="bg-gray-100 px-6 py-4">
-              <Button variant="primary" disabled={isLoading}>
+            <DialogFooter className="px-6 py-4">
+              <Button disabled={isLoading}>
                 Create
               </Button>
             </DialogFooter>

@@ -103,7 +103,7 @@ const MessageFileModal = () => {
             </div>
             <FormMessage />
             <DialogFooter className="px-6 py-4">
-              <Button variant="primary" disabled={isLoading}>
+              <Button disabled={isLoading}>
                 Save
               </Button>
             </DialogFooter>
