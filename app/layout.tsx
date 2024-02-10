@@ -26,7 +26,6 @@ export default function RootLayout({
         <ClerkProvider>
           <ThemeProvider
             attribute="class"
-            forcedTheme="light"
             defaultTheme="light"
             enableSystem
             disableTransitionOnChange

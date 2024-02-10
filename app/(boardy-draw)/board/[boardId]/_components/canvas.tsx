@@ -449,9 +449,8 @@ export const Canvas = ({
 
   return (
     <main
-      className="h-full w-full relative bg-neutral-100 touch-none"
+      className="h-full w-full relative bg-neutral-100  touch-none"
     >
-      {/* <Info boardId={boardId} /> */}
       <Participants />
       <Toolbar
         canvasState={canvasState}

@@ -44,7 +44,7 @@ export default function DeleteServerModal() {
       <DialogContent className="bg-white dark:text-white text-black p-0 overflow-hidden">
         <DialogHeader className="pt-8 px-6">
           <DialogTitle className="text-2xl text-center font-bold">
-            Delete Server
+            Delete Workspace
           </DialogTitle>
           <DialogDescription className="text-center text-zinc-500">
             Are you sure you want to do this? <br />

@@ -35,8 +35,8 @@ export default function ServerMember  ({
     <button
       onClick={onClick}
       className={cn(
-        "group px-2 py-2 rounded-md flex items-center gap-x-2 w-full hover:bg-zinc-700/10 dark:hover:bg-zinc-700/50 transition mb-1",
-        params?.memberId === member.id && "bg-black hover:bg-zinc-700"
+        "group px-2 py-2 rounded-md flex items-center gap-x-2 w-full hover:bg-zinc-700/10  dark:hover:bg-zinc-700/50 transition mb-1",
+        params?.memberId === member.id && "bg-black hover:bg-zinc-700 dark:bg-zinc-700"
       )}
     >
       <UserAvatar 
@@ -45,7 +45,7 @@ export default function ServerMember  ({
       />
       <p
         className={cn(
-          "font-semibold text-sm text-zinc-500 group-hover:text-zinc-600 dark:text-zinc-300 dark:group-hover:text-zinc-300 transition",
+          "font-semibold text-xs lg:text-sm text-zinc-500 group-hover:text-zinc-600 dark:text-zinc-300 dark:group-hover:text-zinc-300 transition whitespace-nowrap text-ellipsis",
           params?.memberId === member.id && "text-zinc-300 dark:text-zinc-200 group-hover:text-zinc-200 "
         )}
       >

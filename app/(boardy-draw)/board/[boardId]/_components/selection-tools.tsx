@@ -100,7 +100,7 @@ export const SelectionTools = memo(({
       <ColorPicker
         onChange={setFill}
       />
-      <div className="flex flex-col gap-y-0.5">
+      <div className="flex flex-col gap-y-0.5 dark:text-black">
         <Hint label="Bring to front">
           <Button
             onClick={moveToFront}
@@ -120,7 +120,7 @@ export const SelectionTools = memo(({
           </Button>
         </Hint>
       </div>
-      <div className="flex items-center pl-2 ml-2 border-l border-neutral-200">
+      <div className="flex items-center pl-2 ml-2 border-l dark:text-black border-neutral-200">
         <Hint label="Delete">
           <Button
             variant="board"

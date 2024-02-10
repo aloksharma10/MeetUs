@@ -13,19 +13,18 @@ interface EmojiPickerProps {
 }
 const EmojiPicker = ({ onChange }: EmojiPickerProps) => {
   const { resolvedTheme } = useTheme();
-  console.log(resolvedTheme);
   return (
     <Popover>
       <PopoverTrigger>
         <Smile className="text-zinc-500 hover:text-zinc-400 transition" />
       </PopoverTrigger>
       <PopoverContent
-        className="border-none shadow-none drop-shadow-none mb-16"
+        className="border-none shadow-none drop-shadow-none mb-16 w-full"
         side="right"
-        sideOffset={40}
+        sideOffset={0}
       >
         <Picker
-          theme={"light"}
+          theme={resolvedTheme}
           onEmojiSelect={(emoji: any) => onChange(emoji.native)}
         />
       </PopoverContent>

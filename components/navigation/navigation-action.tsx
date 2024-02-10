@@ -9,7 +9,7 @@ const NavigationAction = () => {
       onClick={() => onOpen("createServer")}
     >
       <div className="h-[48px] w-full text-center flex rounded-lg group-hover:rounded-[16px] transition-all overflow-hidden items-center justify-center bg-emerald-500 dark:bg-neutral-700 group-hover:bg-emerald-600">
-        <p className="text-white transition">Create a server</p>
+        <p className="text-white transition">Create a workspace</p>
       </div>
     </button>
   );

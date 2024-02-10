@@ -45,7 +45,7 @@ export default function ServerChannel({
     <button
       onClick={onClick}
       className={cn(
-        "group p-3 rounded-md flex items-center gap-x-2 w-full hover:bg-zinc-700/10 dark: dark:hover:bg-zinc-700/50 transition mb-1",
+        "group p-3 rounded-md flex items-center gap-x-2 w-full hover:bg-zinc-700/10 dark:hover:bg-zinc-700/50 transition mb-1",
         params?.channelId === channel.id &&
           "bg-black hover:bg-zinc-700 dark:bg-zinc-700"
       )}
@@ -53,7 +53,7 @@ export default function ServerChannel({
       <Icon className="flex-shrink-0 w-5 h-5 text-zinc-400" />
       <p
         className={cn(
-          "line-clamp-1 font-semibold text-sm text-zinc-500 group-hover:text-zinc-700 dark:text-zinc-400 dark:group-hover:text-zinc-300 transition",
+          "text-xs lg:text-sm line-clamp-1 whitespace-nowrap overflow-ellipsis font-semibold text-zinc-500 group-hover:text-zinc-700 dark:text-zinc-400 dark:group-hover:text-zinc-300 transition",
           params?.channelId === channel.id &&
             "text-zinc-100 dark:text-zinc-200 dark:group-hover:text-white group-hover:text-zinc-200"
         )}

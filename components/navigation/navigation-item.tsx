@@ -34,7 +34,7 @@ const NavigationItem = ({ id, name, imgURL }: NavigationItemProps) => {
         src={imgURL}
         alt={name}
       />
-      <p className="overflow-hidden capitalize">
+      <p className="overflow-hidden capitalize text-xs lg:text-xl">
         {name.toLowerCase().substring(0, 24)}
         {name.length > 24 ? "..." : ""}
       </p>
