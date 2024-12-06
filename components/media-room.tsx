@@ -13,6 +13,7 @@ import { useUser } from "@clerk/nextjs";
 import { Loader, Loader2, Pen } from "lucide-react";
 
 import ActionTooltip from "./action-tooltip";
+import { useRouter } from "next/navigation";
 
 interface MediaRoomProps {
   chatId: string;
@@ -24,6 +25,7 @@ export const MediaRoom = ({ chatId, video, audio }: MediaRoomProps) => {
   const { user } = useUser();
   const [token, setToken] = useState("");
 
+  
   useEffect(() => {
     if (!user?.firstName || !user?.lastName) return;
 
@@ -32,14 +34,16 @@ export const MediaRoom = ({ chatId, video, audio }: MediaRoomProps) => {
     (async () => {
       try {
         const resp = await fetch(
-          `/api/livekit?room=${chatId}&username=${name}`
+          `/api/get-participant-token?room=${chatId}&username=${name}`
         );
         const data = await resp.json();
         setToken(data.token);
       } catch (e) {
-        console.log(e);
+        console.error(e);
       }
     })();
+
+    console.log("chatId", chatId, "name", name)
   }, [user?.firstName, user?.lastName, chatId]);
 
   if (token === "") {
@@ -53,11 +57,10 @@ export const MediaRoom = ({ chatId, video, audio }: MediaRoomProps) => {
 
   return (
     <LiveKitRoom
-      data-lk-theme="default"
-      color="white"
-      serverUrl={process.env.NEXT_PUBLIC_LIVEKIT_URL}
       token={token}
-      connect={true}
+      serverUrl={process.env.NEXT_PUBLIC_LIVEKIT_URL}
+      data-lk-theme="default"
+      style={{ height: '100dvh' }}
       video={video}
       audio={audio}
     >
@@ -69,11 +72,12 @@ export const MediaRoom = ({ chatId, video, audio }: MediaRoomProps) => {
 
 export const SendMessage = () => {
   const { send, isSending } = useChat();
-
+const router = useRouter();
   const onClick = async () => {
     console.log("clicked");
-    if (send && !isSending)
-      await send(`${process.env.NEXT_PUBLIC_SITE_URL!}/board/${uuidv4()}`);
+    router.push(`${process.env.NEXT_PUBLIC_SITE_URL!}/board/${uuidv4()}`)
+    // if (send && !isSending)
+      // await send(``);
   };
   return (
     <ActionTooltip side="left" align="center" label="Collaborate workspace">
