@@ -497,7 +497,6 @@ export const Canvas = ({
               height={Math.abs(canvasState.origin.y - canvasState.current.y)}
             />
           )}
-          <CursorsPresence />
           {pencilDraft != null && pencilDraft.length > 0 && (
             <Path
               points={pencilDraft}
@@ -506,6 +505,7 @@ export const Canvas = ({
               y={0}
             />
           )}
+          <CursorsPresence />
         </g>
       </svg>
     </main>

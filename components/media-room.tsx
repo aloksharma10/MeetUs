@@ -72,10 +72,9 @@ export const MediaRoom = ({ chatId, video, audio }: MediaRoomProps) => {
 
 export const SendMessage = () => {
   const { send, isSending } = useChat();
-const router = useRouter();
+  const router = useRouter();
   const onClick = async () => {
-    console.log("clicked");
-    router.push(`${process.env.NEXT_PUBLIC_SITE_URL!}/board/${uuidv4()}`)
+    router.push(`/board/${uuidv4()}`);
     // if (send && !isSending)
       // await send(``);
   };
