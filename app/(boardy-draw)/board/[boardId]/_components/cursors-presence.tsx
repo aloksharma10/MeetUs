@@ -1,26 +1,37 @@
 "use client";
 
 import { memo } from "react";
-import { shallow } from "@liveblocks/client";
+import { shallow } from "@liveblocks/react";
 
-import { 
-  useOthersConnectionIds, 
-  useOthersMapped
-} from "@/liveblocks.config";
-import { colorToCss } from "@/lib/utils";
+import { useOthers } from "@/liveblocks.config";
+import { colorToCss, connectionIdToColor } from "@/lib/utils";
 
-import { Cursor } from "./cursor";
+import { RemoteCursor } from "./remote-cursor";
 import { Path } from "./path";
 
 const Cursors = () => {
-  const ids = useOthersConnectionIds();
+  const others = useOthers(
+    (list) =>
+      list
+        .filter((o) => o.presence.cursor != null)
+        .map((o) => ({
+          connectionId: o.connectionId,
+          cursor: o.presence.cursor!,
+          name: o.info?.name ?? "Teammate",
+          color: connectionIdToColor(o.connectionId),
+        })),
+    shallow,
+  );
 
   return (
     <>
-      {ids.map((connectionId) => (
-        <Cursor
-          key={connectionId}
-          connectionId={connectionId}
+      {others.map((o) => (
+        <RemoteCursor
+          key={o.connectionId}
+          x={o.cursor.x}
+          y={o.cursor.y}
+          name={o.name}
+          color={o.color}
         />
       ))}
     </>
@@ -28,31 +39,34 @@ const Cursors = () => {
 };
 
 const Drafts = () => {
-  const others = useOthersMapped((other) => ({
-    pencilDraft: other.presence.pencilDraft,
-    penColor: other.presence.penColor,
-  }), shallow);
+  const others = useOthers(
+    (list) =>
+      list
+        .filter((o) => o.presence.pencilDraft != null && o.presence.pencilDraft.length > 0)
+        .map((o) => ({
+          connectionId: o.connectionId,
+          pencilDraft: o.presence.pencilDraft!,
+          penColor: o.presence.penColor,
+        })),
+    shallow,
+  );
 
   return (
     <>
-      {others.map(([key, other]) => {
-        if (other.pencilDraft) {
-          return (
-            <Path
-              key={key}
-              x={0}
-              y={0}
-              points={other.pencilDraft}
-              fill={other.penColor ? colorToCss (other.penColor) : "#000"}
-            />
-          );
-        }
-
-        return null;
-      })}
+      {others.map((o) => (
+        <Path
+          key={o.connectionId}
+          x={0}
+          y={0}
+          points={o.pencilDraft}
+          fill={
+            o.penColor ? colorToCss(o.penColor) : "#000"
+          }
+        />
+      ))}
     </>
-  )
-}
+  );
+};
 
 export const CursorsPresence = memo(() => {
   return (

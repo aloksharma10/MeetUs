@@ -24,19 +24,57 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-export function connectionIdToColor(connectionId: number): string {
-  return COLORS[connectionId % COLORS.length];
-};
+function connectionIdToIndex(connectionId: number | string): number {
+  if (typeof connectionId === "number") {
+    return connectionId;
+  }
+  let hash = 0;
+  for (let i = 0; i < connectionId.length; i++) {
+    hash = (hash << 5) - hash + connectionId.charCodeAt(i);
+    hash |= 0;
+  }
+  return Math.abs(hash);
+}
 
+export function connectionIdToColor(connectionId: number | string): string {
+  const idx = connectionIdToIndex(connectionId);
+  return COLORS[Math.abs(idx) % COLORS.length];
+}
+
+/**
+ * Converts viewport (client) coordinates into the board's world coordinates,
+ * accounting for the SVG's on-screen position and scale.
+ */
 export function pointerEventToCanvasPoint(
   e: React.PointerEvent,
   camera: Camera,
 ) {
+  const el = e.currentTarget as unknown;
+  if (!(el instanceof SVGSVGElement)) {
+    return {
+      x: Math.round(e.clientX) - camera.x,
+      y: Math.round(e.clientY) - camera.y,
+    };
+  }
+
+  const svg = el;
+  const pt = svg.createSVGPoint();
+  pt.x = e.clientX;
+  pt.y = e.clientY;
+  const ctm = svg.getScreenCTM();
+  if (!ctm) {
+    return {
+      x: Math.round(e.clientX) - camera.x,
+      y: Math.round(e.clientY) - camera.y,
+    };
+  }
+
+  const local = pt.matrixTransform(ctm.inverse());
   return {
-    x: Math.round(e.clientX) - camera.x,
-    y: Math.round(e.clientY) - camera.y,
+    x: Math.round(local.x - camera.x),
+    y: Math.round(local.y - camera.y),
   };
-};
+}
 
 export function colorToCss(color: Color) {
   return `#${color.r.toString(16).padStart(2, "0")}${color.g.toString(16).padStart(2, "0")}${color.b.toString(16).padStart(2, "0")}`;

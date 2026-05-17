@@ -68,7 +68,7 @@ export const ChatItem = ({
       return;
     }
 
-    router.push(`/servers/${params?.serverId}/conversations/${member.id}`);
+    router.push(`/server/${params?.serverId}/conversations/${member.id}`);
   }
 
   useEffect(() => {
@@ -80,7 +80,7 @@ export const ChatItem = ({
 
     window.addEventListener("keydown", handleKeyDown);
 
-    return () => window.removeEventListener("keyDown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
 
   const form = useForm<z.infer<typeof formSchema>>({
